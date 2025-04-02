@@ -25,8 +25,13 @@ def extract_tables_from_pdf(pdf_path):
     return tables
 
 def merge_tables(tables):
+    chosen_tables = []
     if len(tables) > 1:
-        return pd.concat([table.df for table in tables[:-1]], ignore_index=True)
+        for table in tables:
+            if any("." in str(row[0]) for row in table.df.itertuples(index=False)):
+                chosen_tables.append(table)
+        
+        return pd.concat([table.df for table in chosen_tables], ignore_index=True)
     elif len(tables) == 1:
         return tables[0].df
     else:

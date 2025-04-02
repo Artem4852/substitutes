@@ -39,4 +39,4 @@ def download_substitutes(date=None):
         print(ctx_auth.get_last_error())
 
 if __name__ == "__main__":
-    download_substitutes(datetime(2025, 3, 18))
+    download_substitutes(datetime(2025, 4, 2))
